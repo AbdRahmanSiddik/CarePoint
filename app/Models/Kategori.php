@@ -18,6 +18,6 @@ use Illuminate\Database\Eloquent\Model;
 
     public function medikit()
     {
-        return $this->belongsTo(Medikit::class, 'id_kategori', 'kategori_id');
+        return $this->hasMany(Medikit::class, 'kategori_id', 'id_kategori');
     }
 }

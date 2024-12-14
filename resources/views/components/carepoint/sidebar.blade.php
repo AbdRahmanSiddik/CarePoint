@@ -35,12 +35,12 @@
             </use>
           </svg></a>
         <ul class="sidebar-submenu">
-            <li><a href="/medikit-list">
-                <svg class="svg-menu">
-                  <use href="{{ asset('') }}assets/svg/iconly-sprite.svg#right-3"></use>
-                </svg>Semua Data</a></li>
+          <li><a href="/medikit">
+              <svg class="svg-menu">
+                <use href="{{ asset('') }}assets/svg/iconly-sprite.svg#right-3"></use>
+              </svg>Semua Data</a></li>
           @foreach (kategori_raw() as $item)
-            <li><a href="/medikit-list?key={{ $item->token_kategori }}">
+            <li><a href="/medikit?key={{ $item->token_kategori }}">
                 <svg class="svg-menu">
                   <use href="{{ asset('') }}assets/svg/iconly-sprite.svg#right-3"></use>
                 </svg>{{ $item->nama_kategori }}</a></li>

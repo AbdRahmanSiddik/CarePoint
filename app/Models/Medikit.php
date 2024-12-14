@@ -18,6 +18,7 @@ class Medikit extends Model
 
     public function kategori()
     {
-        return $this->hasMany(Kategori::class, 'id_kategori', 'kategori_id');
+        return $this->belongsTo(Kategori::class, 'kategori_id', 'id_kategori');
     }
+
 }

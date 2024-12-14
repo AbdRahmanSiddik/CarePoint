@@ -4,18 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Models\Kategori;
 use App\Models\Medikit;
-use Illuminate\Http\Request;
+use App\Http\Requests\MedikitRequest;
+use Illuminate\Support\Str;
 
 class MedikitController extends Controller
 {
     public function index()
     {
-        $key = $_GET['key'];
-        $id = Kategori::where('token_kategori', $key)->first()->id_kategori;
+        $key = isset($_GET['key']) ? value($_GET['key']) : false ;
 
         if($key){
+            $kategori = Kategori::where('token_kategori', $key)->first();
             $data = [
-                'medikits' => Medikit::with('kategori')->where('kategori_id', $id)->get()
+                'medikits' => Medikit::with('kategori')->where('kategori_id', $kategori->id_kategori)->get(),
+                'key' => $kategori
             ];
         }else {
             $data = [
@@ -26,32 +28,41 @@ class MedikitController extends Controller
         return view('admin.medikit.data-medikit', $data);
     }
 
-    public function create()
+    public function store(MedikitRequest $request)
+    {
+        $token = Str::random(16);
+        $kategori_id = $request->kategori;
+        $nama_medikit = $request->nama_medikit;
+        $file = $request->file('thumbnail');
+        $deskripsi = $request->deskripsi;
+        $harga = $request->harga;
+        $stok = $request->stok;
+
+        $file_name = $nama_medikit.".".$file->getClientOriginalExtension();
+
+        Medikit::create([
+            'token_medikit' => $token,
+            'kategori_id' => $kategori_id,
+            'nama_medikit' => $nama_medikit,
+            'thumbnail' => $file_name,
+            'deskripsi' => $deskripsi,
+            'harga' => $harga,
+            'harga_jual' => $harga,
+            'stok' => $stok,
+        ]);
+    }
+
+    public function show(Medikit $medikit)
     {
         //
     }
 
-    public function store(Request $request)
+    public function update(MedikitRequest $request, Medikit $medikit)
     {
         //
     }
 
-    public function show(medikit $medikit)
-    {
-        //
-    }
-
-    public function edit(medikit $medikit)
-    {
-        //
-    }
-
-    public function update(Request $request, medikit $medikit)
-    {
-        //
-    }
-
-    public function destroy(medikit $medikit)
+    public function destroy(Medikit $medikit)
     {
         //
     }

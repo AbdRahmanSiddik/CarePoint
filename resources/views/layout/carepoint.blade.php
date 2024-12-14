@@ -45,7 +45,7 @@
         <div class="container-fluid">
           <div class="row">
             <div class="col-md-6 footer-copyright">
-              <p class="mb-0">Copyright 2024 © by <a href="https://www.turbo-main.com/" target="_blank">TURBO COMMUNITY.</a></p>
+              <p class="mb-0">Copyright 2024 © by explode from <a href="https://www.turbo-main.com/" target="_blank">TURBO COMMUNITY.</a></p>
             </div>
             <div class="col-md-6">
               <p class="float-end mb-0">Hand crafted &amp; made with
