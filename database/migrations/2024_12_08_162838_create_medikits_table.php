@@ -12,6 +12,7 @@ return new class extends Migration
             $table->unsignedInteger('id_medikit')->autoIncrement();
             $table->string('token_medikit', 16);
             $table->unsignedInteger('kategori_id');
+            $table->unsignedInteger('supplier_id');
             $table->string('nama_medikit', 100);
             $table->string('thumbnail');
             $table->text('deskripsi');
@@ -23,6 +24,10 @@ return new class extends Migration
             $table->foreign('kategori_id')
                   ->references('id_kategori')
                   ->on('kategoris')
+                  ->cascadeOnDelete();
+            $table->foreign('supplier_id')
+                  ->references('id_supplier')
+                  ->on('suppliers')
                   ->cascadeOnDelete();
         });
     }

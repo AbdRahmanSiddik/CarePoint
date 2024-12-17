@@ -28,6 +28,11 @@ class MedikitController extends Controller
         return view('admin.medikit.data-medikit', $data);
     }
 
+    public function create()
+    {
+        return view('admin.medikit.tambah-medikit');
+    }
+
     public function store(MedikitRequest $request)
     {
         $token = Str::random(16);

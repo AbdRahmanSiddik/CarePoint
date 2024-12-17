@@ -59,7 +59,7 @@ class KategoriController extends Controller
         $kategori->update($data);
 
         return redirect('/kategori')->with([
-            'update' => "Data $nama_kategori --> $old_kategori Berhasil Diupdate"
+            'update' => "Data $old_kategori --> $nama_kategori Berhasil Diupdate"
         ]);
     }
 

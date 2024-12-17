@@ -20,5 +20,10 @@ class Medikit extends Model
     {
         return $this->belongsTo(Kategori::class, 'kategori_id', 'id_kategori');
     }
+    
+    public function supplier()
+    {
+        return $this->belongsTo(Supplier::class, 'supplier_id', 'id_supplier');
+    }
 
 }

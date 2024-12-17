@@ -58,10 +58,10 @@
       <li class="sidebar-list">
         <svg class="pinned-icon">
           <use href="{{ asset('') }}assets/svg/iconly-sprite.svg#Pin"></use>
-        </svg><a class="sidebar-link" href="/">
+        </svg><a class="sidebar-link" href="/supplier">
           <svg class="stroke-icon">
             <use href="{{ asset('') }}assets/svg/iconly-sprite.svg#Ticket-star"></use>
-          </svg><span>Data Suplier</span></a>
+          </svg><span>Data Supplier</span></a>
       </li>
       <li class="sidebar-list">
         <svg class="pinned-icon">

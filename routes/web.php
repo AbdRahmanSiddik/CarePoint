@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\MedikitController;
+use App\Http\Controllers\SupplierController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -12,7 +13,13 @@ Route::post('/kategori/store', [KategoriController::class, 'store'])->name('kate
 Route::post('/kategori/{kategori}', [KategoriController::class, 'update'])->name('kategori.update');
 Route::get('/kategori/{kategori}/destroy', [KategoriController::class, 'destroy'])->name('kategori.destroy');
 
+// supplier
+Route::get('/supplier', [SupplierController::class, 'index']);
+Route::post('/supplier/tambah', [SupplierController::class, 'store']);
+Route::post('/supplier/{supplier}/edit', [SupplierController::class, 'update'])->name('supplier.edit');
+Route::get('/supplier/{supplier}/hapus', [SupplierController::class, 'destroy']);
 
 //medikit
 Route::get('/medikit', [MedikitController::class, 'index']);
-Route::get('/medikit-tambah', [MedikitController::class, 'create']);
+Route::get('/medikit/tambah', [MedikitController::class, 'create']);
+Route::post('/medikit/tambah', [MedikitController::class, 'store']);
