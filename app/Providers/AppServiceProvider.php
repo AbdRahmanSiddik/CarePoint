@@ -21,9 +21,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Blade::directive('kategori', function () {
-           $kategori = Kategori::select('nama_kategori', 'token_kategori')->get();
-           return $kategori;
+        Blade::directive('rupiah', function ($expression) {
+            return "<?php echo 'Rp. ' . number_format($expression, 0, ',', '.'); ?>";
         });
     }
 }

@@ -23,3 +23,6 @@ Route::get('/supplier/{supplier}/hapus', [SupplierController::class, 'destroy'])
 Route::get('/medikit', [MedikitController::class, 'index']);
 Route::get('/medikit/tambah', [MedikitController::class, 'create']);
 Route::post('/medikit/tambah', [MedikitController::class, 'store']);
+Route::get('/medikit/{medikit}/edit', [MedikitController::class, 'edit']);
+Route::post('/medikit/{medikit}/edit', [MedikitController::class, 'update']);
+Route::get('/medikit/{medikit}/hapus', [MedikitController::class, 'destroy']);
