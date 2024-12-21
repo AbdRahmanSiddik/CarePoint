@@ -5,19 +5,26 @@ use App\Http\Controllers\MedikitController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SupplierController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Auth;
 
-Route::get('/', function () {
-    return view('welcome');
+
+Route::middleware('guest')->group(function (){
+    Route::get('/', function () {
+        return view('welcome');
+    });
 });
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'verified', 'role:operator'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/operator/dashboard', function(){
+        return view('dashboard');
+    })->name('dashboard.operator');
 });
 
 Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
-    Route::get('/dashboard', function(){
+    Route::get('/admin/dashboard', function(){
         return view('admin.dashboard');
     })->name('dashboard');
 

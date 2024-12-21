@@ -92,12 +92,17 @@
       <li class="line"> </li>
       <li class="sidebar-main-title">Others & Settings</li>
       <li class="sidebar-list">
-        <svg class="pinned-icon">
-          <use href="{{ asset('') }}assets/svg/iconly-sprite.svg#Pin"></use>
-        </svg><a class="sidebar-link" href="/">
-          <svg class="stroke-icon">
-            <use href="{{ asset('') }}assets/svg/iconly-sprite.svg#Logout"></use>
-          </svg><span>Logout</span></a>
+        <form action="{{ route('logout') }}" method="POST">
+            @csrf
+          <svg class="pinned-icon">
+            <use href="{{ asset('') }}assets/svg/iconly-sprite.svg#Pin"></use>
+          </svg><a class="sidebar-link" href="{{ route('logout') }}"
+          onclick="event.preventDefault();
+                      this.closest('form').submit();">
+            <svg class="stroke-icon">
+              <use href="{{ asset('') }}assets/svg/iconly-sprite.svg#Logout"></use>
+            </svg><span>Logout</span></a>
+        </form>
       </li>
     </ul>
   </div>

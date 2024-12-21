@@ -78,4 +78,7 @@ class KategoriController extends Controller
             'error' => 'Gagal menghapus data karena masih ada data barang yang menggunakan kategori ini'
         ]);
     }
+
+    # API #
+    
 }
