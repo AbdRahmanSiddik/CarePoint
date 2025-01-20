@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="row page-title">
       <div class="col-sm-6">
-        <h3>Default dashboard</h3>
+        <h3>Welcome</h3>
       </div>
       <div class="col-sm-6">
         <nav>
@@ -24,9 +24,9 @@
         <div class="card profile-greeting card-hover">
           <div class="card-body">
             <div class="img-overlay">
-              <h1>Good day, Lena Miller</h1>
+              <h1>Good day, {{ auth()->user()->name }}</h1>
               <p>Welcome to the Edmin family! We are delighted that you have visited our dashboard.</p><a
-                class="btn btn-primary" href="pricing.html">Go Premium</a>
+                class="btn btn-primary" href="/medikit">Go To Data</a>
             </div>
           </div>
         </div>

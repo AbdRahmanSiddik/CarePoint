@@ -52,5 +52,21 @@ class RolePermissionSeeder extends Seeder
             'hapus-medikit',
             'lihat-medikit',
         ]);
+
+        $roleOperator = Role::findByName('karyawan');
+        $roleOperator->givePermissionTo([
+            'tambah-kategori',
+            'edit-kategori',
+            'hapus-kategori',
+            'lihat-kategori',
+            'tambah-supplier',
+            'edit-supplier',
+            'hapus-supplier',
+            'lihat-supplier',
+            'tambah-medikit',
+            'edit-medikit',
+            'hapus-medikit',
+            'lihat-medikit',
+        ]);
     }
 }

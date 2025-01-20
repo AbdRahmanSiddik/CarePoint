@@ -16,7 +16,7 @@
       <li class="sidebar-list">
         <svg class="pinned-icon">
           <use href="{{ asset('') }}assets/svg/iconly-sprite.svg#Pin"></use>
-        </svg><a class="sidebar-link" href="/">
+        </svg><a class="sidebar-link" href="/{{ auth()->user()->roles->pluck('name')->join(', ') }}/dashboard">
           <svg class="stroke-icon">
             <use href="{{ asset('') }}assets/svg/iconly-sprite.svg#Home"></use>
           </svg><span>Dashboard</span></a>
@@ -50,7 +50,7 @@
       <li class="sidebar-list">
         <svg class="pinned-icon">
           <use href="{{ asset('') }}assets/svg/iconly-sprite.svg#Pin"></use>
-        </svg><a class="sidebar-link" href="/">
+        </svg><a class="sidebar-link" href="/karyawan">
           <svg class="stroke-icon">
             <use href="{{ asset('') }}assets/svg/iconly-sprite.svg#User"></use>
           </svg><span>Data Karyawan</span></a>

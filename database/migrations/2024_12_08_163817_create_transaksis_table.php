@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('kontak')->nullable();
             $table->unsignedInteger('jumlah_barang');
             $table->decimal('total_harga', 19, 2);
+            $table->foreignId('_karyawan')->constrained('users')->cascadeOnDelete();
             $table->enum('status_bayar', ['sukses', 'pending', 'gagal', 'retur'])->default('pending');
             $table->timestamps();
         });

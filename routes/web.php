@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\MedikitController;
 use App\Http\Controllers\ProfileController;
@@ -14,19 +15,31 @@ Route::middleware('guest')->group(function (){
     });
 });
 
-Route::middleware(['auth', 'verified', 'role:operator'])->group(function () {
+Route::middleware(['auth', 'verified', 'role:admin|operator|karyawan'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/dashboard', function(){
+        return redirect(auth()->user()->getRoleName()->first().'/dashboard');
+    })->name('dashboard');
+});
+
+Route::middleware(['auth', 'verified', 'role:operator'])->group(function () {
     Route::get('/operator/dashboard', function(){
-        return view('dashboard');
+        return view('admin.dashboard');
     })->name('dashboard.operator');
+});
+
+Route::middleware(['auth', 'verified', 'role:karyawan'])->group(function () {
+    Route::get('/karyawan/dashboard', function(){
+        return view('admin.dashboard');
+    })->name('dashboard.karyawan');
 });
 
 Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
     Route::get('/admin/dashboard', function(){
         return view('admin.dashboard');
-    })->name('dashboard');
+    })->name('dashboard.admin');
 
     Route::get('/kategori', [KategoriController::class, 'index']);
     Route::post('/kategori/store', [KategoriController::class, 'store'])->name('kategori.store');
@@ -46,6 +59,11 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
     Route::get('/medikit/{medikit}/edit', [MedikitController::class, 'edit']);
     Route::post('/medikit/{medikit}/edit', [MedikitController::class, 'update']);
     Route::get('/medikit/{medikit}/hapus', [MedikitController::class, 'destroy']);
+
+    Route::get('/karyawan', [KaryawanController::class, 'index']);
+    Route::post('/karyawan/tambah', [KaryawanController::class, 'store']);
+    Route::post('/karyawan/{karyawan}', [KaryawanController::class, 'update']);
+    Route::get('/karyawan/{karyawan}/hapus', [KaryawanController::class, 'destroy']);
 });
 
 require __DIR__ . '/auth.php';

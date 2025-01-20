@@ -26,5 +26,12 @@ class UserSeeder extends Seeder
             'password' => bcrypt('123'),
         ]);
         $operator->assignRole('operator');
+
+        $karyawan = User::create([
+            'name' => '_karyawan',
+            'email' => 'karyawan@gmail.com',
+            'password' => bcrypt('123'),
+        ]);
+        $karyawan->assignRole('karyawan');
     }
 }
