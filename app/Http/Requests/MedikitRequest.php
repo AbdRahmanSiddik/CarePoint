@@ -21,12 +21,12 @@ class MedikitRequest extends FormRequest
      */
     public function rules(): array
     {
-        $isEdit = $this->route('medikit')->token_medikit;
+        $isEdit = $this->route('medikit');
         return [
             'kategori' => "required",
             'supplier' => "required",
             'nama_medikit' => "required|max:100",
-            'thumbnail' => $isEdit ? 'nullable' : "required|image|mimes:png,jpg,jpeg",
+            'thumbnail' => isset($isEdit->medikit) ? 'nullable' : "required|image|mimes:png,jpg,jpeg",
             'deskripsi' => "required",
             'harga' => "required",
             'harga_jual' => "required",

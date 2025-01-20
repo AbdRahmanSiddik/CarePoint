@@ -11,14 +11,13 @@ return new class extends Migration
         Schema::create('transaksis', function (Blueprint $table) {
             $table->unsignedInteger('id_transaksi')->autoIncrement();
             $table->string('token_transaksi', 16);
-            $table->foreignId('user_id')->constrained('users')->cascadeOnUpdate();
             $table->string('nama_customer', 100)->nullable();
             $table->string('alamat_customer')->nullable();
             $table->string('kontak')->nullable();
             $table->unsignedInteger('jumlah_barang');
             $table->decimal('total_harga', 19, 2);
             $table->foreignId('_karyawan')->constrained('users')->cascadeOnDelete();
-            $table->enum('status_bayar', ['sukses', 'pending', 'gagal', 'retur'])->default('pending');
+            $table->enum('status_bayar', ['sukses', 'pending', 'gagal', 'retur'])->default('sukses');
             $table->timestamps();
         });
     }

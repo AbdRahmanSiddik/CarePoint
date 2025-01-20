@@ -23,7 +23,7 @@ class SupplierRequest extends FormRequest
     {
         return [
             'supplier' => 'required',
-            'kontak' => 'required|unique:suppliers,kontak,'.$this->route('supplier')->kontak.',kontak',
+            'kontak' => 'required',
             'alamat' => 'required'
         ];
     }
@@ -33,7 +33,6 @@ class SupplierRequest extends FormRequest
         return [
             'supplier.required' => 'Nama supplier harus terisi',
             'kontak.required' => 'Kontak supplier harus terisi',
-            'kontak.unique' => 'Supplier ini telah ada',
             'alamat.required' => 'Alamat supplier harus terisi',
         ];
     }

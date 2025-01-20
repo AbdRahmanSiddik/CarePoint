@@ -152,4 +152,33 @@ class MedikitController extends Controller
             ]);
         }
     }
+
+    public function MediktiAPI($key)
+    {
+         // Menggunakan fungsi lower untuk memastikan pencarian case-insensitive
+         $key = strtolower($key);
+
+         $items = Medikit::whereRaw('LOWER(nama_medikit) LIKE ?', ['%' . $key . '%'])->with('kategori')->get();
+
+         if($items->isNotEmpty()){
+             $data = $items->map(function($item) {
+                 return [
+                     'nama_medikit' => $item->nama_medikit,
+                     'kategori' => $item->kategori->nama_kategori,
+                     'stok' => $item->stok,
+                     'harga_beli' => $item->harga,
+                     'harga_jual' => $item->harga_jual,
+                     'gambar' => $item->thumbnail,
+                     'deskripsi' => $item->deskripsi,
+                     'created_at' => $item->created_at,
+                     'kode_barang' => $item->token_medikit,
+                     'id_barang' => $item->id_medikit
+                 ];
+             });
+
+             return response()->json($data);
+         }else{
+             return response()->json('Data not found', 404);
+         }
+    }
 }

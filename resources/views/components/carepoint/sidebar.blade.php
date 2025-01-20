@@ -22,6 +22,16 @@
           </svg><span>Dashboard</span></a>
       </li>
       <li class="line"> </li>
+      <li class="sidebar-main-title">Service</li>
+      <li class="sidebar-list">
+        <svg class="pinned-icon">
+          <use href="{{ asset('') }}assets/svg/iconly-sprite.svg#Pin"></use>
+        </svg><a class="sidebar-link" href="/transaksi">
+          <svg class="stroke-icon">
+            <use href="{{ asset('') }}assets/svg/iconly-sprite.svg#Document"></use>
+          </svg><span>Kasir</span></a>
+      </li>
+      <li class="line"> </li>
       <li class="sidebar-main-title">Data Master</li>
       <li class="sidebar-list">
         <svg class="pinned-icon">

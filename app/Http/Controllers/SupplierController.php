@@ -18,6 +18,7 @@ class SupplierController extends Controller
 
     public function store(SupplierRequest $request)
     {
+        // dd($request->all());
         $token = Str::random(16);
         $nama_supplier = $request->supplier;
         $kontak = $request->kontak;

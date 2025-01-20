@@ -12,6 +12,7 @@
   <meta name="author" content="pixelstrap">
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>Edmin - Premium Admin Template</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha384-B6Pv/5zX3W8SWFSa8hxHH3M8rfQAnU59wsBbRUnLkLFPc/0vsFYVS6z38h45d4+h" crossorigin="anonymous"></script>
   <x-carepoint.head></x-carepoint.head>
 </head>
 
