@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Medikit;
 use App\Models\Transaksi;
+use App\Notifications\StockLowNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -11,6 +12,7 @@ class TransaksiController extends Controller
 {
     public function index()
     {
+
         return view('admin.transaksi.view-transaksi');
     }
 
@@ -35,7 +37,7 @@ class TransaksiController extends Controller
             'total_harga' => $total,
             'jumlah_barang' => array_sum($kuantitas),
             '_karyawan' => auth()->user()->id,
-            'created_at' => now()
+            'created_at' => now(),
         ];
 
         $customer = Transaksi::insertGetId($data);
@@ -51,7 +53,7 @@ class TransaksiController extends Controller
             $syncData[$barang_id] = [
                 'token_detail' => Str::random(16),
                 'kuantitas' => $kuantitas[$key],
-                'transaksi_id' => $pembayaran_id,  // Menambahkan pembayaran_id
+                'transaksi_id' => $pembayaran_id, // Menambahkan pembayaran_id
                 'jumlah_harga' => $jumlah_harga->harga_jual * $kuantitas[$key],
             ];
 
@@ -75,18 +77,9 @@ class TransaksiController extends Controller
         return view('admin.transaksi.detail', compact('transaksi'));
     }
 
-    public function edit(Transaksi $transaksi)
+    public function rekap()
     {
-        //
-    }
-
-    public function update(Request $request, Transaksi $transaksi)
-    {
-        //
-    }
-
-    public function destroy(Transaksi $transaksi)
-    {
-        //
+        $transaksis = Transaksi::get();
+        return view('admin.transaksi.rekap', compact('transaksis'));
     }
 }

@@ -26,7 +26,7 @@ class MedikitRequest extends FormRequest
             'kategori' => "required",
             'supplier' => "required",
             'nama_medikit' => "required|max:100",
-            'thumbnail' => isset($isEdit->medikit) ? 'nullable' : "required|image|mimes:png,jpg,jpeg",
+            'thumbnail' => "required|image|mimes:png,jpg,jpeg",
             'deskripsi' => "required",
             'harga' => "required",
             'harga_jual' => "required",

@@ -1,3 +1,6 @@
+@php
+  $notifications = auth()->user()->unreadNotifications;
+@endphp
 <header class="page-header row">
   <div class="logo-wrapper d-flex align-items-center col-auto"><a href="index.html"><img class="for-light"
         src="{{ asset('') }}assets/images/logo/logo.png" alt="logo"><img class="for-dark"
@@ -31,44 +34,25 @@
         <li class="custom-dropdown"><a href="javascript:void(0)">
             <svg class="svg-color circle-color">
               <use href="{{ asset('') }}assets/svg/iconly-sprite.svg#Bell"></use>
-            </svg></a><span class="badge rounded-pill badge-secondary">3</span>
+            </svg></a><span class="badge rounded-pill badge-secondary"> {{ auth()->user()->unreadNotifications->count() }}</span>
           <div class="custom-menu notification-dropdown py-0 overflow-hidden">
-            <h5 class="title bg-primary-light">Notifications <a href="private-chat.html"><span
+            <h5 class="title bg-primary-light">Notifications <a href="{{ route('notifications.read') }}"><span
                   class="font-primary">View</span></a></h5>
             <ul class="activity-update">
-              <li class="d-flex align-items-center b-l-primary">
-                <div class="flex-grow-1"> <span>Just Now</span><a href="private-chat.html">
-                    <h5>What`s the project report update?</h5>
-                  </a>
-                  <h6>Rick Novak</h6>
-                </div>
-                <div class="flex-shrink-0"> <img class="b-r-15 img-40"
-                    src="{{ asset('') }}assets/images/avatar/10.jpg" alt=""></div>
-              </li>
-              <li class="d-flex align-items-center b-l-secondary">
-                <div class="flex-grow-1"> <span>12:47 am</span><a href="private-chat.html">
-                    <h5>James created changelog page</h5>
-                  </a>
-                  <h6>Susan Connor</h6>
-                </div>
-                <div class="flex-shrink-0"> <img class="b-r-15 img-40"
-                    src="{{ asset('') }}assets/images/avatar/4.jpg" alt=""></div>
-              </li>
-              <li class="d-flex align-items-center b-l-tertiary">
-                <div class="flex-grow-1"> <span>06:10 pm</span><a href="private-chat.html">
-                    <h5>Polly edited Contact page</h5>
-                  </a>
-                  <h6>Roger Lum</h6>
-                </div>
-                <div class="flex-shrink-0"> <img class="b-r-15 img-40"
-                    src="{{ asset('') }}assets/images/avatar/1.jpg" alt=""></div>
-              </li>
+              @foreach ($notifications as $notification)
+                <li class="d-flex align-items-center b-l-tertiary">
+                  <div class="flex-grow-1">
+                    <span>{{ $notification->created_at->format('h:i A') }}</span>
+                    <h5>Stock low for {{ $notification->data['name'] }}</h5>
+                    <h6>Remaining Stock: {{ $notification->data['stok'] }}</h6>
+                  </div>
+                </li>
+              @endforeach
             </ul>
           </div>
         </li>
         <li class="profile-dropdown custom-dropdown">
-          <div class="d-flex align-items-center"><img src="{{ asset('') }}assets/images/profile.png"
-              alt="">
+          <div class="d-flex align-items-center"><img src="{{ asset('') }}assets/images/profile.png" alt="">
             <div class="flex-grow-1">
               <h5>{{ auth()->user()->name }}</h5><span>{{ auth()->user()->roles->pluck('name')->join(', ') }}</span>
             </div>

@@ -6,6 +6,7 @@ use App\Models\Kategori;
 use App\Models\Medikit;
 use App\Http\Requests\MedikitRequest;
 use App\Models\Supplier;
+use App\Notifications\StockLowNotification;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 
@@ -13,6 +14,14 @@ class MedikitController extends Controller
 {
     public function index()
     {
+
+        $user = auth()->user(); // User yang baru login
+        $medikits = Medikit::where('stok', '<', 10)->get(); // Data stok rendah
+
+        foreach ($medikits as $medikit) {
+            $user->notify(new StockLowNotification($medikit)); // Kirim notifikasi
+        }
+
         $key = isset($_GET['key']) ? $_GET['key'] : false ;
 
         if($key){

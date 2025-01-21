@@ -3,6 +3,7 @@
 use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\MedikitController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\TransaksiController;
@@ -74,6 +75,12 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
     Route::get('/transaksi', [TransaksiController::class, 'index']);
     Route::post('/transaksi', [TransaksiController::class, 'store']);
     Route::get('/transaksi/{transaksi}', [TransaksiController::class, 'show'])->name('transaksi.show');
+
+    // rekapitulasi
+    Route::get('/rekap', [TransaksiController::class, 'rekap']);
+
+    // notifikasi
+    Route::get('/notifications/mark-as-read', [NotificationController::class, 'markAsRead'])->name('notifications.read');
 
 });
 
