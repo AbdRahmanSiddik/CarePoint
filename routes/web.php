@@ -27,6 +27,14 @@ Route::middleware(['auth', 'verified', 'role:admin|operator|karyawan'])->group(f
 
     // API
     Route::get('/api/medikit/{key}', [MedikitController::class, 'MediktiAPI'])->name('medikit.api');
+
+    // notifikasi
+    Route::get('/notifications/mark-as-read', [NotificationController::class, 'markAsRead'])->name('notifications.read');
+
+    // bagian kasir
+    Route::get('/transaksi', [TransaksiController::class, 'index']);
+    Route::post('/transaksi', [TransaksiController::class, 'store']);
+    Route::get('/transaksi/{transaksi}', [TransaksiController::class, 'show'])->name('transaksi.show');
 });
 
 Route::middleware(['auth', 'verified', 'role:operator'])->group(function () {
@@ -45,6 +53,19 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
     Route::get('/admin/dashboard', function(){
         return view('admin.dashboard');
     })->name('dashboard.admin');
+
+
+    // bagian karyawan
+    Route::get('/karyawan', [KaryawanController::class, 'index']);
+    Route::post('/karyawan/tambah', [KaryawanController::class, 'store']);
+    Route::post('/karyawan/{karyawan}', [KaryawanController::class, 'update']);
+    Route::get('/karyawan/{karyawan}/hapus', [KaryawanController::class, 'destroy']);
+
+
+
+});
+
+Route::middleware(['auth', 'verified', 'role:admin|operator'])->group(function () {
 
     Route::get('/kategori', [KategoriController::class, 'index']);
     Route::post('/kategori/store', [KategoriController::class, 'store'])->name('kategori.store');
@@ -65,22 +86,8 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
     Route::post('/medikit/{medikit}/edit', [MedikitController::class, 'update']);
     Route::get('/medikit/{medikit}/hapus', [MedikitController::class, 'destroy']);
 
-    // bagian karyawan
-    Route::get('/karyawan', [KaryawanController::class, 'index']);
-    Route::post('/karyawan/tambah', [KaryawanController::class, 'store']);
-    Route::post('/karyawan/{karyawan}', [KaryawanController::class, 'update']);
-    Route::get('/karyawan/{karyawan}/hapus', [KaryawanController::class, 'destroy']);
-
-    // bagian kasir
-    Route::get('/transaksi', [TransaksiController::class, 'index']);
-    Route::post('/transaksi', [TransaksiController::class, 'store']);
-    Route::get('/transaksi/{transaksi}', [TransaksiController::class, 'show'])->name('transaksi.show');
-
     // rekapitulasi
     Route::get('/rekap', [TransaksiController::class, 'rekap']);
-
-    // notifikasi
-    Route::get('/notifications/mark-as-read', [NotificationController::class, 'markAsRead'])->name('notifications.read');
 
 });
 

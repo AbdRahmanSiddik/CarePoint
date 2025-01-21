@@ -43,8 +43,8 @@
                 <li class="d-flex align-items-center b-l-tertiary">
                   <div class="flex-grow-1">
                     <span>{{ $notification->created_at->format('h:i A') }}</span>
-                    <h5>Stock low for {{ $notification->data['name'] }}</h5>
-                    <h6>Remaining Stock: {{ $notification->data['stok'] }}</h6>
+                    <h5>Stok Menipis Untuk {{ $notification->data['name'] }}</h5>
+                    <h6>Sisa Stok: {{ $notification->data['stok'] }}</h6>
                   </div>
                 </li>
               @endforeach
@@ -67,7 +67,9 @@
               <li class="d-flex">
                 <svg class="svg-color">
                   <use href="{{ asset('') }}assets/svg/iconly-sprite.svg#Login"></use>
-                </svg><a class="ms-2" href="/logout">Log Out</a>
+                </svg><form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button class="ms-2" style="all: unset;">Log Out</button></form>
               </li>
             </ul>
           </div>

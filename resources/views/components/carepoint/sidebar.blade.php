@@ -22,65 +22,68 @@
           </svg><span>Dashboard</span></a>
       </li>
       <li class="line"> </li>
-      <li class="sidebar-main-title">Service</li>
-      <li class="sidebar-list">
-        <svg class="pinned-icon">
-          <use href="{{ asset('') }}assets/svg/iconly-sprite.svg#Pin"></use>
-        </svg><a class="sidebar-link" href="/transaksi">
-          <svg class="stroke-icon">
-            <use href="{{ asset('') }}assets/svg/iconly-sprite.svg#Document"></use>
-          </svg><span>Kasir</span></a>
-      </li>
-      <li class="line"> </li>
-      <li class="sidebar-main-title">Data Master</li>
-      <li class="sidebar-list">
-        <svg class="pinned-icon">
-          <use href="{{ asset('') }}assets/svg/iconly-sprite.svg#Pin"></use>
-        </svg><a class="sidebar-link" href="javascript:void(0)">
-          <svg class="stroke-icon">
-            <use href="{{ asset('') }}assets/svg/iconly-sprite.svg#Bag"></use>
-          </svg><span>Data MediKit</span>
-          <svg class="feather">
-            <use href="{{ asset('') }}assets/svg/feather-icons/dist/feather-sprite.svg#chevron-right">
-            </use>
-          </svg></a>
-        <ul class="sidebar-submenu">
-          <li><a href="/medikit">
-              <svg class="svg-menu">
-                <use href="{{ asset('') }}assets/svg/iconly-sprite.svg#right-3"></use>
-              </svg>Semua Data</a></li>
-          @foreach (kategori_raw() as $item)
-            <li><a href="/medikit?key={{ $item->token_kategori }}">
+        <li class="sidebar-main-title">Service</li>
+        <li class="sidebar-list">
+          <svg class="pinned-icon">
+            <use href="{{ asset('') }}assets/svg/iconly-sprite.svg#Pin"></use>
+          </svg><a class="sidebar-link" href="/transaksi">
+            <svg class="stroke-icon">
+              <use href="{{ asset('') }}assets/svg/iconly-sprite.svg#Document"></use>
+            </svg><span>Kasir</span></a>
+        </li>
+      @if (Auth::user()->getRoleNames()->first() == 'operator' || Auth::user()->getRoleNames()->first() == 'admin')
+        <li class="line"> </li>
+        <li class="sidebar-main-title">Data Master</li>
+        <li class="sidebar-list">
+          <svg class="pinned-icon">
+            <use href="{{ asset('') }}assets/svg/iconly-sprite.svg#Pin"></use>
+          </svg><a class="sidebar-link" href="javascript:void(0)">
+            <svg class="stroke-icon">
+              <use href="{{ asset('') }}assets/svg/iconly-sprite.svg#Bag"></use>
+            </svg><span>Data MediKit</span>
+            <svg class="feather">
+              <use href="{{ asset('') }}assets/svg/feather-icons/dist/feather-sprite.svg#chevron-right">
+              </use>
+            </svg></a>
+          <ul class="sidebar-submenu">
+            <li><a href="/medikit">
                 <svg class="svg-menu">
                   <use href="{{ asset('') }}assets/svg/iconly-sprite.svg#right-3"></use>
-                </svg>{{ $item->nama_kategori }}</a></li>
-          @endforeach
-        </ul>
-      </li>
-      <li class="sidebar-list">
-        <svg class="pinned-icon">
-          <use href="{{ asset('') }}assets/svg/iconly-sprite.svg#Pin"></use>
-        </svg><a class="sidebar-link" href="/karyawan">
-          <svg class="stroke-icon">
-            <use href="{{ asset('') }}assets/svg/iconly-sprite.svg#User"></use>
-          </svg><span>Data Karyawan</span></a>
-      </li>
-      <li class="sidebar-list">
-        <svg class="pinned-icon">
-          <use href="{{ asset('') }}assets/svg/iconly-sprite.svg#Pin"></use>
-        </svg><a class="sidebar-link" href="/supplier">
-          <svg class="stroke-icon">
-            <use href="{{ asset('') }}assets/svg/iconly-sprite.svg#Ticket-star"></use>
-          </svg><span>Data Supplier</span></a>
-      </li>
-      <li class="sidebar-list">
-        <svg class="pinned-icon">
-          <use href="{{ asset('') }}assets/svg/iconly-sprite.svg#Pin"></use>
-        </svg><a class="sidebar-link" href="/kategori">
-          <svg class="stroke-icon">
-            <use href="{{ asset('') }}assets/svg/iconly-sprite.svg#Bookmark"></use>
-          </svg><span>Data Kategori</span></a>
-      </li>
+                </svg>Semua Data</a></li>
+            @foreach (kategori_raw() as $item)
+              <li><a href="/medikit?key={{ $item->token_kategori }}">
+                  <svg class="svg-menu">
+                    <use href="{{ asset('') }}assets/svg/iconly-sprite.svg#right-3"></use>
+                  </svg>{{ $item->nama_kategori }}</a></li>
+            @endforeach
+          </ul>
+        </li>
+        @if (Auth::user()->getRoleNames()->first() == 'admin')
+            <li class="sidebar-list">
+              <svg class="pinned-icon">
+                <use href="{{ asset('') }}assets/svg/iconly-sprite.svg#Pin"></use>
+              </svg><a class="sidebar-link" href="/karyawan">
+                <svg class="stroke-icon">
+                  <use href="{{ asset('') }}assets/svg/iconly-sprite.svg#User"></use>
+                </svg><span>Data Karyawan</span></a>
+            </li>
+        @endif
+        <li class="sidebar-list">
+          <svg class="pinned-icon">
+            <use href="{{ asset('') }}assets/svg/iconly-sprite.svg#Pin"></use>
+          </svg><a class="sidebar-link" href="/supplier">
+            <svg class="stroke-icon">
+              <use href="{{ asset('') }}assets/svg/iconly-sprite.svg#Ticket-star"></use>
+            </svg><span>Data Supplier</span></a>
+        </li>
+        <li class="sidebar-list">
+          <svg class="pinned-icon">
+            <use href="{{ asset('') }}assets/svg/iconly-sprite.svg#Pin"></use>
+          </svg><a class="sidebar-link" href="/kategori">
+            <svg class="stroke-icon">
+              <use href="{{ asset('') }}assets/svg/iconly-sprite.svg#Bookmark"></use>
+            </svg><span>Data Kategori</span></a>
+        </li>
       <li class="line"> </li>
       <li class="sidebar-main-title">Rekap & laporan</li>
       <li class="sidebar-list">
@@ -99,6 +102,7 @@
             <use href="{{ asset('') }}assets/svg/iconly-sprite.svg#Paper"></use>
           </svg><span>Laporan</span></a>
       </li>
+      @endif
       <li class="line"> </li>
       <li class="sidebar-main-title">Others & Settings</li>
       <li class="sidebar-list">
