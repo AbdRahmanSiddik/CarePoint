@@ -1,0 +1,34 @@
+nama,kategori,harga,deskripsi
+Stetoskop,2,150000,Alat untuk mendengarkan suara jantung dan paru
+Termometer,2,50000,Alat untuk mengukur suhu tubuh
+Glukometer,2,200000,Alat pengukur kadar gula darah
+Alat Tensimeter,2,250000,Alat pengukur tekanan darah
+Inhaler,2,120000,Alat bantu pernafasan untuk penderita asma
+Oksimeter,2,150000,Alat pengukur kadar oksigen dalam darah
+Alat Suntik,2,30000,Alat untuk menyuntikkan obat ke tubuh
+SpO2 Monitor,2,175000,Alat untuk memantau kadar oksigen darah
+Obat Cairan Infus,2,50000,Cairan infus untuk pengobatan
+Alat Nebulizer,2,220000,Alat bantu pernafasan untuk asma
+Masker Oksigen,2,40000,Masker untuk pemberian oksigen
+Alat Pemadam Api Kecil,2,80000,Alat pemadam api di rumah sakit
+Alat Bantu Jalan,2,100000,Alat untuk berjalan bagi pasien yang tidak bisa berjalan
+Roller Bandage,2,15000,Perban untuk pembalut luka
+Gloves,2,5000,Sarung tangan medis
+Defibrillator,2,5000000,Alat untuk mengatasi serangan jantung
+Alat Cuci Darah,2,3000000,Alat untuk dialisis
+Alat Trombosit,2,250000,Alat untuk memeriksa jumlah trombosit dalam darah
+Alat Hipoglikemia,2,150000,Alat untuk mengukur kadar gula darah rendah
+Bed Pasien,2,2000000,Tempat tidur untuk pasien rumah sakit
+Air Bed,2,2500000,Tempat tidur untuk pasien yang butuh perawatan intensif
+Alat Laser,2,500000,Alat untuk prosedur laser medis
+Alat Terapi Fisik,2,100000,Peralatan untuk terapi fisik
+Alat Rontgen,2,1500000,Alat untuk pemeriksaan sinar-X
+Stretcher,2,200000,Alat pembawa pasien
+Air Humidifier,2,180000,Alat untuk menambah kelembapan udara
+Refraktometer,2,130000,Alat untuk mengukur indeks bias cahaya
+Kursi Roda,2,600000,Alat bantu berjalan
+Alat Oksigen Konsetrator,2,2500000,Alat untuk menghasilkan oksigen
+Vacuum Sealer,2,200000,Alat untuk menyegel obat atau makanan medis
+Stetoclip,2,50000,Alat penahan stetoskop
+Blood Pressure Monitor,2,250000,Monitor untuk mengukur tekanan darah
+Alat Tes Kehamilan,2,50000,Alat untuk tes kehamilan

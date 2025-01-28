@@ -7,6 +7,9 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\TransaksiController;
+use App\Models\Kategori;
+use App\Models\Medikit;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Auth;
 
@@ -39,7 +42,12 @@ Route::middleware(['auth', 'verified', 'role:admin|operator|karyawan'])->group(f
 
 Route::middleware(['auth', 'verified', 'role:operator'])->group(function () {
     Route::get('/operator/dashboard', function(){
-        return view('admin.dashboard');
+        $data = [
+            'medikit' => Medikit::count(),
+            'kategori' => Kategori::count(),
+            'user' => User::count(),
+        ];
+        return view('admin.dashboard', $data);
     })->name('dashboard.operator');
 });
 
